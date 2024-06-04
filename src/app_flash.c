@@ -97,7 +97,6 @@ int8_t app_flash_handler(const struct device *dev)
 	uint16_t vbat, temp, press, hum;
 	const struct device *bme_dev;
 	const struct device *bat_dev;
-	const struct device *flash_dev;
 	struct vtph data[SENS_MAX_RECORDS];
 
 	// getting all sensor devices
@@ -113,11 +112,11 @@ int8_t app_flash_handler(const struct device *dev)
 		ind++;
 	}
 	// writing and reading stored data
-	app_flash_write(flash_dev, &data);
-	app_flash_read(flash_dev);
+	app_flash_write(dev, &data);
+	app_flash_read(dev);
 
 	// cleaning data storage partition
-	(void)flash_erase(flash_dev, FLASH_OFFSET, FLASH_SIZE);
+	(void)flash_erase(dev, FLASH_OFFSET, FLASH_SIZE);
 	ind = 0;
 	return 0;
 }
