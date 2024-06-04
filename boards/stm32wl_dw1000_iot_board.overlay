@@ -1,0 +1,33 @@
+/*
+ * Copyright (c) 2023
+ * Regis Rousseau
+ * Univ Lyon, INSA Lyon, Inria, CITI, EA3720
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+/* VBAT battery voltage monitoring */
+/* internal ADC channnel of STM32, Px14 - see datasheet ADC part pg 42/149 */
+/ {
+	stm32_vbat: stm32vbat {
+    compatible = "st,stm32-vbat";
+    io-channels = <&adc1 14>;
+    ratio = <3>;
+    status = "okay";
+	};
+};
+
+&adc1 {
+	vbat-channel = <14>;
+	vref-mv = <3000>;
+	status = "okay";
+};
+
+/* config of BME280 sensor (temperature and Humidity) on i2c bus */
+/* address 0x77 --> Address Chip Select on high level (VDD) */
+&i2c1 {
+	status = "okay";
+	bme280@77 {
+		compatible = "bosch,bme280";
+		reg = <0x77>;
+	};
+};
