@@ -12,6 +12,8 @@
 #include <zephyr/kernel.h>
 #include <zephyr/device.h>
 #include <zephyr/drivers/flash.h>
+#include <zephyr/drivers/eeprom.h>
+#include <zephyr/storage/flash_map.h>
 
 //  ======== globals ===============================================
 struct vtph {
@@ -22,9 +24,12 @@ struct vtph {
 };
 
 //  ======== defines ===============================================
-#define FLASH_DEVICE			DT_HAS_CHOSEN(flash0)
-#define FLASH_OFFSET			0x0003F000	// 2x2048 bits at the end of flash
-#define FLASH_SIZE				3072		// 3kB to store sensor data
+#define FLASH_DEVICE			DEVICE_DT_GET_OR_NULL(DT_CHOSEN(zephyr_flash_controller))
+//#define FLASH_PARTITION			storage_partition
+//#define FLASH_DEVICE			FIXED_PARTITION_DEVICE(FLASH_PARTITION)
+#define FLASH_OFFSET			0x0003f000 
+//FIXED_PARTITION_OFFSET(FLASH_PARTITION)	// 2x2048 bits at the end of flash
+#define FLASH_SIZE				4096		// 3kB to store sensor data
 #define SENS_MAX_RECORDS        2       	// 1 structure: 4 samples (vbat, temp, press, hum) = 8 bytes
                                         	// 2 records for the test                                     
 
