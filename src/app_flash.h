@@ -11,8 +11,8 @@
 //  ======== includes ==============================================
 #include <zephyr/kernel.h>
 #include <zephyr/device.h>
+#include <zephyr/fs/nvs.h>
 #include <zephyr/drivers/flash.h>
-#include <zephyr/drivers/eeprom.h>
 #include <zephyr/storage/flash_map.h>
 
 //  ======== globals ===============================================
@@ -24,19 +24,16 @@ struct vtph {
 };
 
 //  ======== defines ===============================================
-#define FLASH_DEVICE			DEVICE_DT_GET_OR_NULL(DT_CHOSEN(zephyr_flash_controller))
-//#define FLASH_PARTITION			storage_partition
-//#define FLASH_DEVICE			FIXED_PARTITION_DEVICE(FLASH_PARTITION)
-#define FLASH_OFFSET			0x0003f000 
-//FIXED_PARTITION_OFFSET(FLASH_PARTITION)	// 2x2048 bits at the end of flash
-#define FLASH_SIZE				4096		// 3kB to store sensor data
-#define SENS_MAX_RECORDS        2       	// 1 structure: 4 samples (vbat, temp, press, hum) = 8 bytes
-                                        	// 2 records for the test                                     
+#define NVS_PARTITION			storage_partition
+#define NVS_PARTITION_DEVICE	FIXED_PARTITION_DEVICE(NVS_PARTITION)
+#define NVS_PARTITION_OFFSET	FIXED_PARTITION_OFFSET(NVS_PARTITION)
+#define NVS_MAX_RECORDS         2       // 1 structure: 4 samples (vbat, temp, press, hum) = 8 bytes
+                                        // 2 records for the test
+#define NVS_SENSOR_ID           1                                       
 
 //  ======== prototypes ============================================
-int8_t app_flash_init(const struct device *dev);
-int8_t app_flash_write(const struct device *dev, struct vtph *data);
-int8_t app_flash_read(const struct device *dev);
-int8_t app_flash_handler(const struct device *dev);
+int8_t app_flash_init(struct nvs_fs *fs);
+int8_t app_flash_store(struct nvs_fs *fs, struct vtph *data);
+int8_t app_flash_handler(struct nvs_fs *fs);
 
 #endif /* APP_FLASH_H */

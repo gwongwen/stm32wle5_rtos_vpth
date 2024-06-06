@@ -44,7 +44,7 @@ uint16_t app_stm32_get_vbat(const struct device *dev)
 	    return 0;
     }
 
-    // getting channel function (ADC VIN[14])
+    // getting channel function
 	ret = sensor_channel_get(dev, SENSOR_CHAN_VOLTAGE, &bat_int32);
     if (ret < 0) {
         printk("error: can't read sensor channels\n");

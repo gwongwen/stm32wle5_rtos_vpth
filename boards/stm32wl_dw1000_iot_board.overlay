@@ -31,7 +31,3 @@
 		reg = <0x77>;
 	};
 };
-
-&flash0 {
-	status = "okay";
-};
