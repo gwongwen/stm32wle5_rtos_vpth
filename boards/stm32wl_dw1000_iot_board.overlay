@@ -16,10 +16,10 @@
 	};
 };
 
+/* enable the corresponding ADC, with the correct vref value (in mV) */
 &adc1 {
-	vbat-channel = <14>;
-	vref-mv = <3000>;
-	status = "okay";
+vref-mv = <3300>;
+status = "okay";
 };
 
 /* config of BME280 sensor (temperature and Humidity) on i2c bus */
