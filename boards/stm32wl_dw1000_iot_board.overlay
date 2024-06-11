@@ -18,8 +18,8 @@
 
 /* enable the corresponding ADC, with the correct vref value (in mV) */
 &adc1 {
-vref-mv = <3300>;
-status = "okay";
+	vref-mv = <1100>;
+	status = "okay";
 };
 
 /* config of BME280 sensor (temperature and Humidity) on i2c bus */

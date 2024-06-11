@@ -68,7 +68,7 @@ int8_t app_flash_store(struct nvs_fs *fs, struct vtph *data)
 
 	// printing data to be stored in memory
 	for (ind = 0; ind < NVS_MAX_RECORDS; ind++) {
-		printk("wrt -> vbat: %d, temp: %d, press: %d, hum: %d\n", data[ind].vbat, data[ind].temp, data[ind].press, data[ind].hum);
+		printk("wrt -> vbat: %"PRIu16", temp: %d, press: %"PRIu16", hum: %"PRIu16"\n", data[ind].vbat, data[ind].temp, data[ind].press, data[ind].hum);
 	}
 
 	// reading the first page
@@ -76,7 +76,7 @@ int8_t app_flash_store(struct nvs_fs *fs, struct vtph *data)
 
 	// printing data stored in memory
 	for (ind = 0; ind < NVS_MAX_RECORDS; ind++) {
-		printk("rd -> vbat: %d, temp: %d, press: %d, hum: %d\n", data[ind].vbat, data[ind].temp, data[ind].press, data[ind].hum);
+		printk("rd -> vbat: %"PRIu16", temp: %"PRIu16", press: %"PRIu16", hum: %"PRIu16"\n", data[ind].vbat, data[ind].temp, data[ind].press, data[ind].hum);
 	}
 	return 0;
 }
