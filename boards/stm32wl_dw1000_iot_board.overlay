@@ -9,10 +9,10 @@
 /* internal ADC channnel of STM32, Px14 - see datasheet ADC part pg 42/149 */
 / {
 	stm32_vbat: stm32vbat {
-    compatible = "st,stm32-vbat";
-    io-channels = <&adc1 14>;
-    ratio = <3>;
-    status = "okay";
+    	compatible = "st,stm32-vbat";
+    	io-channels = <&adc1 14>;
+    	ratio = <3>;
+    	status = "okay";
 	};
 };
 

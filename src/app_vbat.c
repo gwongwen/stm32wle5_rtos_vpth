@@ -34,9 +34,6 @@ uint16_t app_stm32_get_vbat(const struct device *dev)
     uint16_t bat_uint16;
     int8_t ret = 0;
 
-    // getting vbat ADC device
-    dev = DEVICE_DT_GET_ONE(st_stm32_vbat);
-
     // fetching data
     ret = sensor_sample_fetch(dev);
     if (ret < 0 && ret != -EBADMSG) {        

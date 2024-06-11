@@ -33,9 +33,6 @@ uint16_t app_bme280_get_temp(const struct device *dev)
     uint16_t temp_uint16;
     int8_t ret;
 
-    // getting bme280 sensor i2c device
-    dev = DEVICE_DT_GET_ANY(bosch_bme280);
-
     // fetching data
 	ret = sensor_sample_fetch(dev);
     if (ret < 0 && ret != -EBADMSG) { 
@@ -64,8 +61,6 @@ uint16_t app_bme280_get_press(const struct device *dev)
     uint16_t press_uint16;
     int8_t ret;
 
-    // getting bme280 sensor i2c device
-    dev = DEVICE_DT_GET_ANY(bosch_bme280);
 
     // fetching data
 	ret = sensor_sample_fetch(dev);
@@ -94,9 +89,6 @@ uint16_t app_bme280_get_hum(const struct device *dev)
     struct sensor_value hum_int32;
     uint16_t hum_uint16;
     int8_t ret;
-
-    // getting bme280 sensor i2c device
-    dev = DEVICE_DT_GET_ANY(bosch_bme280);
 
     // fetching data
 	ret = sensor_sample_fetch(dev);
