@@ -1,4 +1,4 @@
-# Code for Sastress Project : test of STM32 ADC and BME280 sensor
+# Code for 6Sens Project : test of STM32 ADC and BME280 sensor
 
 ## Overview
 This first code allow us to convert a voltage and add processing to it:
