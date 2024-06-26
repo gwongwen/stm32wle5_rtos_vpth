@@ -11,14 +11,14 @@
 	stm32_vbat: stm32vbat {
     	compatible = "st,stm32-vbat";
     	io-channels = <&adc1 14>;
-    	ratio = <3>;
+   		ratio = <1>;
     	status = "okay";
 	};
 };
 
 /* enable the corresponding ADC, with the correct vref value (in mV) */
 &adc1 {
-	vref-mv = <1100>;
+	vref-mv = <3300>;
 	status = "okay";
 };
 
