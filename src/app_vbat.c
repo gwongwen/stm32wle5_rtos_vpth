@@ -10,7 +10,7 @@
 //  ======== app_stm32_vbat_init ============================================
 int8_t app_stm32_vbat_init(const struct device *dev)
 {
-    // getting internal vbat ADC device at GPIO PB1 - IN14
+    // getting internal vbat ADC device at GPIO IN14
     dev = DEVICE_DT_GET_ONE(st_stm32_vbat);
 
     if (dev == NULL) {
