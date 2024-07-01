@@ -18,6 +18,8 @@
 
 /* enable the corresponding ADC, with the correct vref value (in mV) */
 &adc1 {
+	vref-channel = <13>;
+	vbat-channel = <14>;
 	vref-mv = <3300>;
 	status = "okay";
 };
