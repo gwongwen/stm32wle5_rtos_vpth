@@ -1,10 +1,10 @@
 # Code for 6Sens Project : test of STM32 ADC and BME280 sensor
 
 ## Overview
-This first code allow us to convert a voltage and add processing to it:
+This first code allows us to convert a voltage and adds processing to it:
 
  - take sample of battery level, temperature, humidity and pressure levels
- - store the different values in an area of partitioned internal memory (4kbytes at the end of flash memory)
+ - store the different values in an area of partitioned internal memory (8kbytes at the end of flash memory)
 
 This allows us to test BME280 ennvironmental sensor and the internal battery level ADC of the STM32WLE5xx. The final goal will be to send the samples to a lorawan server and clear the memory location once a day.
 
