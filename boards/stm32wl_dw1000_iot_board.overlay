@@ -6,7 +6,7 @@
  */
 
 /* VBAT battery voltage monitoring */
-/* internal ADC channnel of STM32, IN14 - see datasheet ADC part pg 42/149 */
+/* external ADC channnel of STM32, IN5 - Port PB1 on schematic */
 / {
 	stm32_vbat: stm32vbat {
     	compatible = "st,stm32-vbat";
