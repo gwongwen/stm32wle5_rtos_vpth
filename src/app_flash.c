@@ -104,7 +104,7 @@ int8_t app_flash_handler(struct nvs_fs *fs)
 	// writing and reading stored data
 	app_flash_store(fs, &data);
 
-	// cleaning data storage partition
+	// cleaning data storage partitiony
 	(void)nvs_delete(fs, NVS_SENSOR_ID);
 	ind = 0;
 	return 0;
