@@ -28,24 +28,19 @@ K_TIMER_DEFINE(sens_timer, sens_timer_handler, NULL);
 //  ======== main ===============================================
 int main(void)
 {
-	const struct device *bme_dev = NULL;
-	const struct device *bat_dev = NULL;
+	const struct device *bme_dev;
+	const struct device *bat_dev;
 	struct nvs_fs flash;
 
 	// setup all devices
 	app_bme280_init(bme_dev);
 	app_stm32_vbat_init(bat_dev);
 	app_flash_init(&flash);
-	
+
 	printk("Sensor BME280 and Battery Example\nBoard: %s\n", CONFIG_BOARD);
 
 	// beginning of interrupt subroutine
-//	k_timer_start(&sens_timer, K_NO_WAIT, K_MSEC(2000));		// for test
+	k_timer_start(&sens_timer, K_NO_WAIT, K_MSEC(2000));		// for test
 
-	bat_dev = DEVICE_DT_GET_ONE(st_stm32_vbat);
-	while (1) {
-		uint16_t val = app_stm32_get_vbat(bat_dev);
-		k_sleep(K_MSEC(2000));
-	}
 	return 0;
 }
