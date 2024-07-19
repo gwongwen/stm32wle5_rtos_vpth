@@ -46,7 +46,7 @@ uint16_t app_bme280_get_temp(const struct device *dev)
         printk("can't read sensor channels. error: %d\n", ret);
 	    return 0;
     }
-printk("test\n");
+    
     // temperature received from channel get
     // resolution 12 bits: 0 to 4095 (uint16)
     temp_uint16 = (uint16_t)(sensor_value_to_milli(&temp_int32)/1000);
