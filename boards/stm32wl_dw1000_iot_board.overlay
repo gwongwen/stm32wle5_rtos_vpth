@@ -21,11 +21,11 @@
 &adc1 {
 	vref-channel = <13>;
 	vbat-channel = <14>;
-	vref-mv = <1500>;
+	vref-mv = <1500>;   
 	status = "okay";
 };
 
-/* config of BME280 sensor (temperature and Humidity) on i2c bus */
+/* config of BME280 sensor (temperature and humidity) on i2c bus */
 /* address 0x77 --> Address Chip Select on high level (VDD) */
 &i2c1 {
 	status = "okay";
