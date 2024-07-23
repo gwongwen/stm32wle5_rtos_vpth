@@ -87,15 +87,19 @@ int8_t app_flash_handler(struct nvs_fs *fs)
 	uint16_t vbat, temp, press, hum;
 	const struct device *bme_dev;
 	const struct device *bat_dev;
+	const struct device *ref_dev;
+	uint16_t vref;
 	struct vtph data[NVS_MAX_RECORDS];
 
 	// getting all sensor devices
 	bat_dev = DEVICE_DT_GET_ONE(st_stm32_vbat);
+	ref_dev = DEVICE_DT_GET_ONE(st_stm32_vref);
 	bme_dev = DEVICE_DT_GET_ANY(bosch_bme280);
+	vref = app_stm32_get_vref(ref_dev);
 
 	// putting n structures in fisrt page for this test
 	while (ind < NVS_MAX_RECORDS) {
-		data[ind].vbat = app_stm32_get_vbat(bat_dev);
+		data[ind].vbat = app_stm32_get_vbat(bat_dev, vref);
 		data[ind].temp = app_bme280_get_temp(bme_dev);
 		data[ind].press = app_bme280_get_press(bme_dev);
 		data[ind].hum = app_bme280_get_hum(bme_dev);

@@ -30,11 +30,13 @@ int main(void)
 {
 	const struct device *bme_dev;
 	const struct device *bat_dev;
+	const struct device *ref_dev;
 	struct nvs_fs flash;
 
 	// setup all devices
 	app_bme280_init(bme_dev);
 	app_stm32_vbat_init(bat_dev);
+	app_stm32_vref_init(ref_dev);
 	app_flash_init(&flash);
 
 	printk("Sensor BME280 and Battery Example\nBoard: %s\n", CONFIG_BOARD);
@@ -43,8 +45,10 @@ int main(void)
 //	k_timer_start(&sens_timer, K_NO_WAIT, K_MSEC(2000));		// for test
 
 	bat_dev = DEVICE_DT_GET_ONE(st_stm32_vbat);
+	ref_dev = DEVICE_DT_GET_ONE(st_stm32_vref);
 	while (1) {
-		uint16_t vbat = app_stm32_get_vbat(bat_dev);
+		uint16_t vref = app_stm32_get_vref(ref_dev);
+		uint16_t vbat = app_stm32_get_vbat(bat_dev, vref);
 		k_sleep(K_MSEC(2000));
 	}
 	return 0;
